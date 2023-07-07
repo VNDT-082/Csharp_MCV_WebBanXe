@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<Xe>
+
+<link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/StyleAdmin.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+
+<div style="height:500px">
+
+    <div class="row">
+        <div class="col-md-9">
+            <form method="post" action="/Admin/TimXe">
+                <h4 class="text-white font-weight-bold">Tìm xe để thêm, xóa, sữa</h4>
+                <select name="MaXe" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width:400px; height:50px">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.MaXe" class="form-control">@item.TenXe</option>
+                    }
+                </select>
+                <button type="submit" class="btn btn-danger" style="height:52px; width:90px"> Search</button>
+            </form>
+        </div>
+    </div>
+    
+
+</div>

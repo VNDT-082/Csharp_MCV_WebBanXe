@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "QuanLyHoaDon";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<PhieuBanHang>
+
+
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/StyleAdmin.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+
+
+<div>
+    <div class="container">
+        <div class="row">
+            <a href="/Admin/LocHoaHon"><div class="MuaNgay">Lọc hóa đơn</div></a>
+        </div>
+        <div class="row">
+
+            <table class="table table-dark table-striped text-center mt-1 mb-1" style="width:1000px">
+                <tr class="font-weight-bold">
+                    <td style="width:200px">Mã khách hàng</td>
+                    <td style="width:300px">Ngày bán</td>
+                    <td style="width:140px">Trạng thái</td>
+                    <td style="width:150px">Thanh toán</td>
+                    <td style="width:50px">ID Phiếu Bán</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            @{
+                if (Model != null)
+                {
+                    foreach (PhieuBanHang item in Model)
+                    {
+                        <form method="post" action="/Admin/SuaNSX" enctype="multipart/form-data">
+                            <table class="table table-dark table-striped text-center align-items-center mt-1 mb-1" style="width:1000px">
+                                <tr>
+                                    <td style="width:200px">
+                                        <input name="MaKhachHang" style="width:200px" value="@item.MaKhachHang" class="form-control text-dark font-weight-bold" readonly />
+                                    </td>
+                                    <td style="width:200px" class=" text-danger font-weight-bold">
+                                        <input name="NgayBan" style="width:200px" value="@item.NgayBan" class="form-control text-danger font-weight-bold" />
+                                    </td>
+                                    <td style="width:100px">
+                                        <input type="text" style="width:100px" class="text-dark font-weight-bold" name="SoLuong" value="@item.TrangThai.ToString()" />
+                                    </td>
+                                    <td style="width:150px">
+                                        <input type="text" style="width:150px" class="text-dark font-weight-bold" name="ThanhToan" value="@item.ThanhToan" />
+                                    </td>
+                                    <td style="width:50px">
+                                        <input type="text" style="width:50px" class="text-dark font-weight-bold" name="IdPhieuBan" value="@item.id_PhieuBan" />
+                                        <div class="dropdown mt-1">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.Action("QuanLyChiTietHD", "Admin", new { id = item.id_PhieuBan })
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td width="50px">
+                                        <button type="submit" style="outline:none; background:none; border:none; color:blue">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>Lưu
+                                        </button>
+                                    </td>
+                                    <td width="50px">
+                                        <a href="/Admin/">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    }
+                }
+            }
+        </div>
+        <div class="row">
+            @(ViewBag.deleteErr!=null)
+            {
+            <p class="text-danger">@ViewBag.deleteErr</p>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="~/bootstrap/js/bootstrap.js"></script>
+<script src="~/bootstrap/js/jquery-3.3.1.min.js"></script>

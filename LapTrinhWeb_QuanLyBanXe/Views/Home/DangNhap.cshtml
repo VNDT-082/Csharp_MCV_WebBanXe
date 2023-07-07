@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+    <title>DangNhap</title>
+</head>
+<body style="width:100%; height:100%">
+    <div>
+        <div class="row background_dk">
+            <div class="col-md-5 pl-0" >
+                <a href="/Home/TrangChu" style="text-decoration:none; margin-top:20px; text-align:center">
+                    <h6 style="color: aliceblue; font-weight: bold; margin-left: 200px; margin-top: 20px; box-shadow: 0 0 5px #0026ff">
+                    Quay lại trang chủ</h6>
+                </a>
+                <img src="~/HinhAnh/logoHang/dn.gif" width="500" class=""/>
+            </div>
+            <div class="col-md-5 text-center">
+                <div class="form_dk">
+                    <form method="post" action="/Home/DangNhap">
+                        <div class="fgroup">
+                            <b>Đăng nhập</b>
+                            <p>Tên đăng nhập</p>
+                            <input type="text" name="TenDangNhap" placeholder="" class="input_Dn" />
+                            <br /><br />
+                            <p>Mật khẩu</p>
+                            <input type="password" name="MatKhau" placeholder="" class="input_Dn" />
+                        </div>
+                        <div class="fgroup">
+                            <input type="submit" value="Đăng nhập" class="btn_Dn" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "FormEditInfo_Xe";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model Xe
+<div>
+    <form method="post" action="/Admin/UpDate_Add_Xe" enctype="multipart/form-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ml-2">
+                    <div class="form-group">
+                        <label class="form-text text-white">Mã xe</label>
+                        <input name="MaXe" type="text" class="form-control" value="@Model.MaXe" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text text-white">Tên xe</label>
+                        <input name="TenXe" type="text" class="form-control" value="@Model.TenXe" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text text-white">Mã loai xe(1:Xe tay ga; 2:Xe số; 2: Xe phân khối lớn; 4:Xe điện)</label>
+                        <input name="MaLoaiXe" type="text" class="form-control" value="@Model.MaLoaiXe" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text text-white">Mã nhà sản xuất</label>
+                        <input name="MaNSX" type="text" class="form-control" value="@Model.MaNSX" />
+                        <label class="form-check-label form-inline">@Model.HangXe.TenNSX</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-text text-white">Ảnh bìa</label>
+                        <img src="~/HinhAnh/AnhBia/@Model.AnhBia" width="180" height="120" />
+                        <input type="file" name="fileUpLoad" class="text-white font-weight-bold" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-text text-white">Giá</label>
+                        <input name="Gia" type="text" class="form-control" value="@Model.Gia" />
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label class="form-text text-white">Mô tả</label>
+                        <input name="MoTa" type="text" class="form-control fa-paragraph" value="@Model.MoTa" style="height:500px" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="/Admin/XoaXe/@Model.MaXe">Xoa</a>
+                </div>
+                <div class="col-md-2"><button type="submit" class="btn btn-primary">Lưu</button></div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/styleloading.css" rel="stylesheet" />
+    @using LapTrinhWeb_QuanLyBanXe.Models;
+</head>
+<body onload="myfunction()"  style="width:100%; height:100%">
+    @*<div class="loadingBox">
+        <div class="loading"></div>
+    </div>*@
+    <div>
+        <div class="row background">
+            <div class="container">
+                <div class="row dong">
+                    <div class="col-md-7 gioithieu">
+                        <a href="" class="text_inline gioithieu">Chăm sóc khách hàng</a>
+                        <b class="text_inline">|</b>
+                        <a href="" class="text_inline gioithieu">Tải ứng dụng</a>
+                        <b class="text_inline">|</b>
+                        <b class="text_inline">kết nối</b>
+                        <a href="">
+                            <img src="~/HinhAnh/logoHang/facebook.png" class="logo" />
+                            <img src="~/HinhAnh/logoHang/instagram.png" class="logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-5 gioithieu float-right">
+                        <p class="text_inline float-right">Thông báo</p>
+                        <img src="~/HinhAnh/logoHang/notifications.png" class="logo float-right" />
+                        <b class="text_inline float-right">|</b>
+                        <p class="text_inline float-right">Thông tin</p>
+                        <img src="~/HinhAnh/logoHang/info.png" class="logo float-right" />
+                        <b class="text_inline float-right">|</b>
+                        @{
+                            if (Session["k"] != null)
+                            {
+                                KhachHang k = (KhachHang)Session["k"];
+                                <a href="/Home/TrangCaNhan" class="gioithieu"><p class="text_inline float-right text_link">@k.TenKhach</p></a>
+                                <b class="text_inline float-right">|</b>
+                                <a href="/Home/DangNhap" class="text_inline gioithieu text-right float-right"><p class="text_link">Đăng xuất</p></a>
+
+                            }
+                            else
+                            {
+                                <a href="/Home/DangKyThongTinCaNhan" class="gioithieu text_inline float-right"><p>Đăng ký</p></a>
+                                <b class="text_inline float-right">|</b>
+                                <a href="/Home/DangNhap" class="gioithieu text_inline float-right"><p>Đăng nhập</p></a>
+                            }
+                        }
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="container">
+                            <div class="row">
+                                <a href="/Home/TrangChu" class="text_link__">
+                                    <div class="col-md-6">
+                                        <img src="~/HinhAnh/logoHang/motorcycle.png" height="40" width="70" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <b class="font-weight-bold text-light shopName ">Motorcycle</b>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 ">
+                        <div class="container text-center">
+                            <form class="form-group search" method="post" action="/Home/TimKiem">
+                                <input type="search" class="input_search" placeholder="  Nhập từ khóa tìm kiếm" name="TimKiem_" />
+                                <button class="search_button" type="submit">
+                                    <img class="icon_search" src="~/HinhAnh/logoHang/searching.png" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="button">
+                            <a href="/Home/GioHang">
+                                @{
+                                    if (Session["GioHang"] != null)
+                                    {
+
+                                        List<GioHang> ds_GioHang = Session["GioHang"] as List<GioHang>;
+                                        int SoLuongHang = int.Parse(ds_GioHang.Count.ToString());
+                                        <p class="text_inline gioithieu_Size2 d-inline-block">
+                                            Giỏ hàng (@SoLuongHang )
+                                            <label class="d-inline-block"><img src="~/HinhAnh/logoHang/shopping-cart.png" class="logoSize2" /></label>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text_inline gioithieu_Size2 ">Giỏ hàng</p>
+                                        <label><img src="~/HinhAnh/logoHang/shopping-cart.png" class="logoSize2" /></label>
+                                    }
+                                }
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row HangXe">
+                    <div class="col-md-8 text-center m-auto">
+                        @Html.Action("HangXe", "Home")
+                    </div>
+                </div>
+                <div class="col-md-6 m-auto" style="background-color: #00ffff">
+                    <div class="line"></div>
+                </div>
+                <div class="row HangXe">
+                    <div class="col-md-6 m-auto">
+                        @Html.Action("LoaiXe", "Home");
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row background_body">
+            <div class="col-md-3">
+
+            </div>
+            <div class="co-md-9">
+                @RenderBody()
+            </div>
+
+        </div>
+        <div class="row background_foot">
+            <div class="container border-top border-danger border-1">
+                <div class="row"><h1 class="font-weight-bold text-secondary ml-3">MotoCycle</h1></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Địa chỉ:</h6>
+                        <p>
+                            Hà Nội: Tòa nhà Sao Mai - Tầng 11, số 19 Lê Văn Lương, P. Nhân Chính, Q. Thanh Xuân.
+                            Điện thoại: (024) 73 077 889
+                        </p>
+                        <p>
+                            Hồ Chí Minh: Tòa nhà TTC - Tầng 17, số 253 Hoàng Văn Thụ, P.2, Q. Tân Bình.
+                            Điện thoại: (028) 73 057 057
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Hỗ trợ khách hàng:</h6>
+                        <p>
+                            Hotline: 1900 636 135 (9:00 - 21:00)
+                        </p>
+                        <p>
+                            Email: support@okxe.vn
+                        </p>
+                        <a href="">Chính sách giải quyết khiếu nại</a>
+                        <a href="">Chính sách bảo mật</a>
+                        <a href="">Quy định đăng tin</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>VỀ CHÚNG TÔI:</h6>
+                        <a href="">Giới thiệu</a>
+                        <a href="">Điều khoản sử dụng</a>
+                        <a href="">Quy chế hoạt động</a>
+                        <a href="">Trung tâm khách hàng</a>
+                        <a href="">Hỏi đáp (FAQ)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var preloader = document.querySelector('loadingBox');
+        function myfunction() {
+            preloader.style.display = 'none';
+        };
+        //$(window).on('load', function (event) {
+        //    $('body').removeClass('preloading');
+        //    $('.loadingBox').delay(1000).fadeOut('fast');
+        //});
+        //$(function () {
+        //    $(window).load(function () {
+        //        $('loading').fadeOut(12000);
+        //    })
+        //});
+
+    </script>
+</body>
+
+</html>

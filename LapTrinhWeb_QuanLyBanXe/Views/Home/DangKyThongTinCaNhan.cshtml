@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "DangKyThongTinCaNhan";
+}
+
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+
+
+<div >
+    <div class="row background_dk">
+        <div class="col-md-5 pl-0">
+            <a href="/Home/TrangChu" style="text-decoration:none; margin-top:20px; text-align:center">
+                <h6 style="color: aliceblue; font-weight: bold; margin-left: 200px; margin-top: 20px; box-shadow: 0 0 5px #0026ff ">
+                Quay lại trang chủ</h6>
+            </a>
+            <img src="~/HinhAnh/logoHang/dn.gif" width="500" style="margin-top:100px" />
+        </div>
+        <div class="col-md-5 text-center">
+            <div class="form_dk" style="margin-top:20px">
+                <form method="post" action="/Home/DangKyThongTinCaNhan">
+                    <div class="fgroup">
+                        <b>Nhập thông tin cá nhân</b>
+                    </div>
+                    <div class="fgroup">
+                        <p>Tên khách hàng:</p>
+                        <input type="text" name="TenKhach" placeholder="" class="input_Dn" />
+                        <br /><br />
+                        <p>Ngày sinh</p>
+                        <input type="date" name="NgaySinh" placeholder="" class="input_Dn" />
+                        <br /><br />
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="">Giới tính</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Nam">
+                            <label class="form-check-label" for="inlineRadio1">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Nữ">
+                            <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                        </div>
+                        <br /><br />
+                        <p>Số điện thoại</p>
+                        <input type="text" name="SDT" placeholder="" class="input_Dn" />
+                        <br /><br />
+                        <p>Địa chỉ</p>
+                        <input type="text" name="DiaChi" placeholder="" class="input_Dn" />
+                        @if(ViewBag.ttcn!=null)
+                        {
+                            <label class="text-danger">@ViewBag.ttcn</label>
+                        }
+                    </div>
+                    <div class="fgroup">
+                        <input type="submit" value="Tiếp theo" class="btn_Dn" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

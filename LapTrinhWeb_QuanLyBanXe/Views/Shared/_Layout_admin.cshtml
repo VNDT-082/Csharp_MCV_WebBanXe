@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/StyleAdmin.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div>
+        <div class="row" style="background-image:linear-gradient(#000000,#141313)">
+            <div class="container mt-3 mb-2 ml-3">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <div class="container">
+                            <div class="row">
+                                <a href="/Home/TrangChu" class="text_link__">
+                                    <div class="col-md-6">
+                                        <img src="~/HinhAnh/logoHang/motorcycle.png" height="40" width="70" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <b class="font-weight-bold text-light shopName ">Motorcycle</b>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 ">
+                        <div class="container text-center">
+                            <form class="form-group search" method="post" action="/Home/TimKiem">
+                                <input type="search" class="input_search" placeholder="  Nhập từ khóa tìm kiếm" name="TimKiem_" />
+                                <button class="search_button" type="submit">
+                                    <img class="icon_search" src="~/HinhAnh/logoHang/searching.png" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="row adm_bg_main">
+            <div class="panel_btn adm_bg_color">
+                <div class="row" style="margin-top:50px"></div>
+                <div class="row" style="margin-left:20px"> <a href="/Admin/QuanLyNhaSanXuat" class="btn_XuLy"><div>QUẢN LÝ CUNG CẤP</div></a></div>
+                <div class="row" style="margin-left:20px"> <a href="/Admin/TrangChu" class="btn_XuLy"><div>QUẢN LÝ XE</div></a></div>
+                <div class="row" style="margin-left:20px"> <a href="/Admin/QuanLyHoaDon" class="btn_XuLy"><div>QUAN LÝ HÓA ĐƠN</div></a></div>
+                <div class="row" style="margin-left:20px"> <a href="" class="btn_XuLy"><div>QUẢN LÝ GIAO HÀNG</div></a></div>
+            </div>
+            <div class="panel_main adm_bg_main">
+                @RenderBody()
+            </div>
+
+        </div>
+        <div class="row background_foot">
+            <div class="container border-top border-danger border-1">
+                <div class="row"><h1 class="font-weight-bold text-secondary ml-3">MotoCycle</h1></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Địa chỉ:</h6>
+                        <p>
+                            Hà Nội: Tòa nhà Sao Mai - Tầng 11, số 19 Lê Văn Lương, P. Nhân Chính, Q. Thanh Xuân.
+                            Điện thoại: (024) 73 077 889
+                        </p>
+                        <p>
+                            Hồ Chí Minh: Tòa nhà TTC - Tầng 17, số 253 Hoàng Văn Thụ, P.2, Q. Tân Bình.
+                            Điện thoại: (028) 73 057 057
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Hỗ trợ khách hàng:</h6>
+                        <p>
+                            Hotline: 1900 636 135 (9:00 - 21:00)
+                        </p>
+                        <p>
+                            Email: support@okxe.vn
+                        </p>
+                        <a href="">Chính sách giải quyết khiếu nại</a>
+                        <a href="">Chính sách bảo mật</a>
+                        <a href="">Quy định đăng tin</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>VỀ CHÚNG TÔI:</h6>
+                        <a href="">Giới thiệu</a>
+                        <a href="">Điều khoản sử dụng</a>
+                        <a href="">Quy chế hoạt động</a>
+                        <a href="">Trung tâm khách hàng</a>
+                        <a href="">Hỏi đáp (FAQ)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/bootstrap/js/bootstrap.js"></script>
+    <script src="~/bootstrap/js/jquery-3.3.1.min.js"></script>
+</body>
+</html>

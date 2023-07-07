@@ -1,0 +1,30 @@
+﻿@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<ChiTietPhieuBan>
+
+<link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/StyleAdmin.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+
+<div>
+    <div class="container">
+        <table>
+            <tr>
+                <td>Mã xe</td>
+                <td>Số lượng</td>
+                <td>Đơn giá</td>
+                <td>Thành tiền</td>
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.MaXe</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.DonGia</td>
+                    <td>@item.ThanhTien</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

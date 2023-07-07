@@ -1,0 +1,23 @@
+﻿@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<HangXe> 
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row text-center">
+       <div class="col-md-12 mb-1">
+           <ul class="nav">
+               @foreach (var h in Model)
+               {
+                   <li class=" nav-item">
+                       <a class="nav-link" href="/Home/XeTheoHang/@h.MaNSX">
+                           <img class="logo_HangXe"  src="/HinhAnh/logoHang/@h.AnhBia" />
+                       </a>
+                   </li>
+               }
+           </ul>
+           
+       </div>
+    </div>
+</div>

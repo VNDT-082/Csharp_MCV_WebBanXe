@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<GioHang>
+
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row">
+        <h6>Giỏ hàng:</h6><br />
+        <a href="/Home/TrangChu"><b class="text-primary">Mua thêm sản phẩm khác</b></a>
+        @if (ViewBag.GioHangRong != null)
+        {
+                <p>@ViewBag.GioHangRong</p>
+        }
+    </div>
+    <div class="row">
+        <div class="col-md-10 m-auto" style="background-color:#cff4fc">
+            <div class="container m-4">
+                <table class="table table-striped" width="1000">
+                    <tr>
+                        <td width="350">Tên xe</td>
+                        <td width="150">Hình ảnh</td>
+                        <td width="100">Số lượng</td>
+                        <td width="100">Giá bán</td>
+                        <td width="100">Thành tiền</td>
+                        <td width="100"></td>
+                        <td width="100"></td>
+                    </tr>
+                    </table>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <form method="post" action="/Home/LuuGioHang/@item.MaXe">
+                                    <table class="table table-striped" width="1000">
+                                        <tr>
+                                            <td width="350">@item.TenXe (@item.MaXe)</td>
+                                            <td width="150"><img src="~/HinhAnh/TongHopAnh/@item.HinhAnh" height="90" width="120" /></td>
+                                            <td width="100"><input type="number" name="sl" value="@item.SoLuong" /></td>
+                                            <td width="100">@item.GiaBan</td>
+                                            <td width="100">@item.ThanhTien</td>
+                                            <td width="100">
+                                                <button type="submit" style="outline:none; background:none; border:none; color:blue">
+                                                    <i class="fa fa-refresh" aria-hidden="true"></i>Lưu
+                                                </button>
+                                            </td>
+                                            <td width="100"><a href="/Home/XoaSanPhamKhoiGioHang/@item.MaXe"><i class='fa-solid fa-trash'></i>Xóa</a></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            }
+                        }
+                    }
+            <div class="row">
+                @{
+                    if (Session["k"] == null)
+                    {
+                        <div class="col-md-11 float-left">
+                            <p class="text-danger">Quí khách hàng chưa đăng nhập. Thoát khỏi website dữ liệu giỏ hàng sẽ mất.</p>
+                        </div>
+                        
+                    }
+                    else
+                    {
+                        <div class="col-md-11 float-right">
+                            <a href="/Home/XacNhanDonHang" class="float-right text_link__"><div class="MuaNgay"><b>Xác nhận đơn hàng</b></div></a>
+                        </div>
+                    }
+                }
+
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @if(ViewBag.LoiDatHang != null)
+        {
+                <b class="text-danger">@ViewBag.LoiDatHang</b>
+            }
+    </div>
+</div>

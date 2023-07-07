@@ -1,0 +1,82 @@
+﻿body {
+}
+a:hover{
+    text-decoration:none;
+}
+.adm_bg_color {
+    background-image: linear-gradient(#1f0051,#240063);
+}
+.adm_bg_main{
+    background-image:linear-gradient(#01284e,#000331);
+}
+.panel_btn {
+    float:left;
+    width: 300px;
+    background-image: linear-gradient(#1f0051,#240063);
+}
+.panel_main {
+    width: 1100px;
+    float: left;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    padding: 20px 20px;
+    padding-left:50px;
+}
+.btn_XuLy {
+    width: 240px;
+    height: 60px;
+    background-image: linear-gradient(#1f0051,#240063);
+    color: aliceblue;
+    text-shadow: 0 0 5px #ffd800;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    border: 2px solid #0400f6;
+    border-radius:5px;
+    box-shadow: 0 0 5px #00d0ff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:15px;
+    padding-top:15px;
+    padding-left:20px;
+  
+}
+    .btn_XuLy::after {
+        width: 240px;
+        height: 60px;
+        background-image: linear-gradient(#0066ff,#037c7e);
+        color: aliceblue;
+        text-shadow: 0 0 5px #ffd800;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        text-align: center;
+        justify-items: center;
+        align-items: center;
+        border: 2px solid #0400f6;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #00d0ff;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .btn_XuLy:hover {
+        width: 240px;
+        height: 60px;
+        background-image: linear-gradient(#0066ff,#037c7e);
+        color: aliceblue;
+        text-shadow: 0 0 5px #ffd800;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        text-align: center;
+        justify-items: center;
+        align-items: center;
+        border: 2px solid #0400f6;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #00d0ff;
+        text-shadow: 0 0 5px #fff2b4;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+

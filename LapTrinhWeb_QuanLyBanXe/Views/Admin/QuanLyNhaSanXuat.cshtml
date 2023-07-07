@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "QuanLyNhaSanXuat";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<HangXe>
+
+<link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/StyleAdmin.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+
+<div>
+    <div class="container">
+        <div class="row">
+
+            <table class="table table-dark table-striped text-center align-items-center mt-1 mb-1" style="width:1000px">
+                <tr class="font-weight-bold">
+                    <td style="width:200px">Mã nhà sản xuất</td>
+                    <td style="width:300px">Tên nhà sản xuất</td>
+                    <td style="width:300px">Logo nhà sản xuất</td>
+                    <td style="width:50px"></td>
+                    <td style="width:50px"></td>
+                </tr>
+            </table>
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <form method="post" action="/Admin/SuaNSX"  enctype="multipart/form-data">
+                            <table class="table table-dark table-striped text-center align-items-center mt-1 mb-1" style="width:1000px">
+                                <tr>
+                                    <td style="width:200px">
+                                        <input name="MaNSX" value="@item.MaNSX" class="form-control text-dark font-weight-bold" readonly />
+                                    </td>
+                                    <td style="width:300px" class=" text-danger font-weight-bold">
+                                        <input name="TenNSX" value="@item.TenNSX" class="form-control text-danger font-weight-bold" />
+                                    </td>
+                                    <td style="width:300px">
+                                        <img src="~/HinhAnh/logoHang/@item.AnhBia" width="50" height="50" />
+                                        <input type="file" class="text-light font-weight-bold" name="fileUpLoad" />
+                                    </td>
+                                    <td width="50px">
+                                        <button type="submit" style="outline:none; background:none; border:none; color:blue">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>Lưu
+                                        </button>
+                                    </td>
+                                    <td width="50px"><a href="/Admin/XoaNhaSanXuat/@item.MaNSX">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>Xóa</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        }
+                    } 
+                }
+        </div>
+        <div class="row">
+            @(ViewBag.deleteErr!=null)
+            {
+            <p class="text-danger">@ViewBag.deleteErr</p>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <form method="post" action="/Admin/ThemNhaSanXuat" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <h6 class="text-danger font-weight-bold">Thêm nhà sản xuất</h6>
+                        <br />
+                        <label class="form-text">Nhập mã nhà sản xuất:</label>
+                        <input type="text" name="MaNSX" class="form-control" />
+                        <br />
+                        <label class="form-text">Nhập tên nhà sản xuất:</label>
+                        <input type="text" name="TenNSX" class="form-control" />
+                        <br />
+                        <label class="form-text">Thêm ảnh logo nhà sản xuất:</label>
+                        <input type="file" class="text-light font-weight-bold" name="fileUpLoad"/>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

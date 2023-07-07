@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "TrangCaNhan";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model KhachHang
+
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+
+<div class="container m-3">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="container m-auto">
+                <div class="row"><b>Họ tên:<label class="text-danger font-weight-bold">@Model.TenKhach</label>  _@ViewBag.LoaiKhach</b></div>
+                <div class="row"><b>Ngày sinh:<label class="text-danger font-weight-bold">@Model.NgaySinh</label></b></div>
+                <div class="row"> <b>Giới tính:<label class="text-danger font-weight-bold">@Model.GioiTinh</label></b></div>
+                <div class="row"><b>Số điện thoại:<label class="text-danger font-weight-bold">@Model.SDT</label></b></div>
+                <div class="row"><b>Số lượt mua:<label class="text-danger font-weight-bold">@Model.SoLuotMua</label></b></div>
+            </div>
+        </div>
+        <div class="__line"></div>
+    </div>
+    <div class="row">
+        <div class="container">
+            @{
+                List<PhieuBanHang> ds_phieuBanHang = ViewBag.Ds_HD;
+                List<ChiTietPhieuBan> ds_ChiTietPhieuBan = ViewBag.Ds_ChiTietHD;
+                if (ds_phieuBanHang != null && ds_phieuBanHang.Count > 0)
+                {
+                    foreach (var item_ in ds_phieuBanHang)
+                    {
+                        <div class="row"><h6>Ngày bán:<label>@item_.NgayBan.ToString()</label></h6></div>
+                        <div class="row"><h6>Hình thức thanh toán:<label>@item_.HinhThucThanhToan.TenHinhThuc</label></h6></div>
+                        <div class="row"><h6>Tổng tiền thanh toán:<label>@item_.ThanhToan.ToString()</label></h6></div>
+
+                        <table class="table table-light border border-0">
+                            <tr>
+                                <td>Tên xe:</td>
+                                <td>Số lượng:</td>
+                                <td>Đơn giá:</td>
+                                <td>Thành tiền:</td>
+                            </tr>
+                            @if (ds_ChiTietPhieuBan != null && ds_ChiTietPhieuBan.Count > 0)
+                            {
+                                foreach (var item in ds_ChiTietPhieuBan)
+                                {
+                                    if (item_.id_PhieuBan == item.id_PhieuBan)
+                                    {
+                                        <tr>
+                                            <td>@item.Xe.TenXe</td>
+                                            <td>@item.SoLuong</td>
+                                            <td>@item.DonGia</td>
+                                            <td>@item.ThanhTien</td>
+                                        </tr>
+                                    }
+                                }
+                            }
+
+                        </table>
+                        <br /><br />
+                    }
+                }
+
+            }
+        </div>
+    </div>
+</div>

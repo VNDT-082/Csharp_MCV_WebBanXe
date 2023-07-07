@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "XacNhanDonHang";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<GioHang>
+
+
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 m-auto">
+            <div class="container m-5">
+                <form method="post" action="/Home/XacNhanDonHang">
+                    <div class="row mt-4 mb-4">
+                        <div class="form-group col-md-12">
+                            <b class="form-text">Tên khách hàng:</b>
+                            @{
+                                if (ViewBag.KH == null)
+                                {
+                                    <input class="form-control" type="text" disabled name="TenKhach" />
+                                    <p class="text-danger">Khách hàng chưa đăng nhập vui lòng đăng nhập để tiếp tục.</p>
+                                }
+                                else
+                                {
+                                    KhachHang k = ViewBag.KH;
+                                    <input class="form-control" type="text" disabled value="@k.TenKhach" name="TenKhach" />
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <p class="form-text">Giới tính:</p>
+                                            @if (k.GioiTinh == "Nam")
+                                            {
+                                                <input type="radio" checked /><label>Nam</label>
+                                                <input type="radio" /><label>Nữ</label>
+                                            }
+                                            else
+                                            {
+                                                <input type="radio" /><label>Nam</label>
+                                                <input type="radio" checked /><label>Nữ</label>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="row mt-4 mb-4">
+                        <div class="row">
+                            @{
+                                if (Model != null)
+                                {
+                                    <div class="col-md-8">
+                                        <p>San pham:</p>
+                                        @foreach (var item in Model)
+                                        {
+
+
+                                            <input class="form-control mt-2 mb-2 col-md-8" value="@item.TenXe + (@item.SoLuong)" />
+
+                                        }
+                                    </div>
+                                    <button type="submit" class="text_link__ m-5 float-right TraGop">Xác Nhận</button>
+                                }
+                                else
+                                {
+                                    <a href="/Home/TrangChu">Gio hang rong quay lai trang chu</a>
+                                }
+                            }
+
+                        </div>
+                        <div class="row">
+                            <ul class="nav">
+                                @{
+                                    List<HinhThucThanhToan> ht_ThanhToan = ViewBag.HT_ThanhToan;
+                                    foreach (HinhThucThanhToan ht in ht_ThanhToan)
+                                    {
+                                        <li class="nav-item"><input class="form-control" type="radio" name="HinhThucThanhToan" value="@ht.MaHinhThuc" /><label>@ht.TenHinhThuc</label></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

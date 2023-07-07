@@ -1,0 +1,202 @@
+﻿body {
+}
+a,p,div,h1,h2,h3,h4,h5,h6{
+    font-family:'Times New Roman', Times, serif;
+}
+.btn_AnhSanPham {
+    border: 1px solid #1c00ca;
+    border-radius:5px;
+    color: #ffffff;
+    margin:2px;
+}
+    .btn_AnhSanPham:hover{
+        box-shadow:0 0 2px #0094ff;
+    }
+.text_red_bold {
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+ }
+
+._slide_shows {
+    height: 420px;
+    width: 420px;
+   /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;*/
+    background-color: black;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.__swap {
+    width:4200px;
+    animation: trinhChieu 12s ease infinite;
+}
+.__Image_slide_show {
+    float: left;
+    height: 420px;
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes trinhChieu{
+    0%{
+        margin-left:0;
+    }
+    25% {
+        margin-left: -100%;
+    }
+    50% {
+        margin-left: -200%;
+    }
+    60% {
+        margin-left: -300%;
+    }
+    80% {
+        margin-left: -400%;
+    }
+    100%{
+        margin-left:-500%;
+    }
+}
+
+.MuaNgay {
+    height: 60px;
+    width: 220px;
+    background-image: linear-gradient(#ff0000, #df3232);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 23px;
+    color: whitesmoke;
+    border-radius: 10px;
+    text-align:center;
+    padding-top:10px;
+}
+    .MuaNgay:hover {
+        height: 60px;
+        width: 230px;
+        margin-left:-5px;
+        background-image: linear-gradient(whitesmoke,#f4e1e1);
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        font-size: 24px;
+        color: red;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        padding-top: 10px;
+        border: 2px groove red;
+        box-shadow: 0 0 5px #dc9696;
+
+    }
+        .MuaNgay:hover .text_link__ {
+            color: red;
+            text-decoration-line: none;
+        }
+
+.TraGop {
+    height: 60px;
+    width: 220px;
+    background-image: linear-gradient(#1c00ca, #1d45fa);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 23px;
+    color: whitesmoke;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 10px;
+}
+    .TraGop:hover {
+        height: 60px;
+        width: 230px;
+        margin-left:-5px;
+        background-image: linear-gradient(whitesmoke,#d2ebf7);
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        font-size: 24px;
+        color: blue;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        padding-top: 10px;
+        border:2px groove #1c00ca;
+        box-shadow: 0 0 5px #67a6fb;
+        border-radius:10px;
+    }
+        .TraGop:hover .text_link__ {
+            color: red;
+            text-decoration-line: none;
+        }
+.text_link__{
+    color:whitesmoke;
+    text-decoration:none;
+}
+    .text_link__:hover {
+        color: red;
+        text-decoration-line: none;
+    }
+
+.__line{
+    height:2px;
+    width:950px;
+    background-image:linear-gradient(red,#b00000);
+    margin-left:-15px;
+    margin-top:10px;
+    padding-left:-10px;
+    margin-bottom:15px;
+    border-bottom-right-radius:1px;
+    border-top-right-radius:1px;
+}
+
+.div_ChonMua {
+    width: 500px;
+    background-image: linear-gradient(#dbf8f5,#deedee);    
+    text-align: left;
+    padding-left: 15px;
+    border: 2px dashed #1c00ca;
+    box-shadow: 0 0 5px #1d45fa;
+}
+.div_khuyenMai {
+    width: 496px;
+    height: 250px;
+    background-color: #fff4b2;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: -15px;
+    position:relative;
+    border-top:2px solid red;
+    padding-top:50px;
+    padding-left:20px;
+    padding-bottom:40px;
+    font-size:16px;
+    font-weight:bold;
+    color:red;
+}
+.KhuyenMai {
+    width: 240px;
+    height: 50px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: wheat;
+    background-image: linear-gradient(red,#b81e1e);
+    margin-left: 40px;
+    margin-bottom: -75px;
+    z-index: 10;
+    position: relative;
+    border-radius:25px;
+    padding-top:5px;
+}
+.text_link{
+    font-family:'Times New Roman', Times, serif;
+}
+    .text_link:hover {
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration-line:none;
+        font-weight:bold;
+        color:#ffffff;
+    }

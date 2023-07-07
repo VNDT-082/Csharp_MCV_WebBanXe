@@ -1,0 +1,462 @@
+﻿@{
+    ViewBag.Title = "ChiTietXe";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+
+}
+@{
+    ChiTietXe ct = ViewBag.ChiTietXe;
+    int n = @ViewBag.ds_AnhSP.Count - 1;
+    float wtd = -n * 420;
+
+}
+
+@using System.Collections;
+@using System.Threading;
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model Xe
+@helper ChuanHoaGia(string Gia)
+{
+    string gia = "";
+    string gia1 = "";
+    for (int i = 0; i <= Gia.Length - 1; i++)
+    {
+        if (Gia[i] == '.')
+        {
+            break;
+        }
+        gia += Gia[i];
+    }
+    Stack giaChuanHoa = new Stack();
+    int dem = 0;
+    for (int i = gia.Length - 1; i >= 0; i--)
+    {
+        if (dem < 3)
+        {
+            giaChuanHoa.Push(gia[i]);
+            dem++;
+        }
+        else
+        {
+            giaChuanHoa.Push(".");
+            giaChuanHoa.Push(gia[i]);
+            dem = 1;
+        }
+    }
+    while (giaChuanHoa.Count > 0)
+    {
+        gia1 += giaChuanHoa.Pop();
+    }
+    @gia1
+}
+<head>
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<div class="container">
+    <div class="row" style=" height: 420px; width:1200px">
+        <img src="/HinhAnh/TongHopAnh/@ViewBag.bg" height="420px" width="1140px" />
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-5 ">
+            @*<div class="carousel slide">
+                    <div class=" carousel-inner">
+                        @{
+                            foreach (string s in ViewBag.ds_AnhSP)
+                            {
+                                <div class="carousel-item active">
+                                    <img src="~/HinhAnh/TongHopAnh/@s" class="d-block w-100" height="420px" width="420px" />
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>*@
+            <div class="_slide_shows">
+                <div class="__swap">
+                    @{
+                        foreach (HinhAnh s in ViewBag.ds_AnhSP)
+                        {
+                            <div class="__Image_slide_show">
+                                <img src="~/HinhAnh/TongHopAnh/@s.TenHinh" height="420" width="420" />
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    @{
+                        foreach (var s in ViewBag.ds_AnhSP)
+                        {
+                            <div class="btn_AnhSanPham">
+                                <a href="">
+                                    <img src="~/HinhAnh/TongHopAnh/@s.TenHinh" height="100" width="100" />
+                                </a>
+                            </div>
+
+                        }
+                    }
+                </div>
+                <div class="row mt-5">
+                    <p class="font-weight-normal"><label class="text_red_bold">Mô tả:</label>@Model.MoTa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="__line"></div>
+    <div class="row">
+        <div class="col-md-6">
+            @{
+                if (ViewBag.PBTC != null)
+                {
+                    foreach (HinhAnh h in ViewBag.PBTC)
+                    {
+                        <img src="~/HinhAnh/TongHopAnh/@h.TenHinh" width="460" />
+                        break;
+                    }
+                }
+            }
+
+            <div class="container">
+                <div class="row">
+                    @{
+                        if (ViewBag.PBCC != null)
+                        {
+                            <div class="col-md-4 pt-3"><p>Phiên bản cao cấp:</p></div>
+                            <div class="col-md-8 p-1">
+                                @foreach (HinhAnh item in ViewBag.PBCC)
+                                {
+                                    <button class="btn btn-outline-primary"><img src="~/HinhAnh/TongHopAnh/@item.TenHinh" height="40" width="50" /></button>
+                                }
+                            </div>
+                        }
+                    }
+
+
+
+                </div>
+                <div class="row">
+                    @{
+                        if (ViewBag.PBDB != null)
+                        {
+                            <div class="col-md-4 pt-3"><p>Phiên bản đặc biệt:</p></div>
+                            <div class="col-md-8 p-1">
+                                @foreach (HinhAnh item in ViewBag.PBDB)
+                                {
+                                    <button class="btn btn-outline-primary"><img src="~/HinhAnh/TongHopAnh/@item.TenHinh" height="40" width="50" /></button>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row">
+                    @{
+                        if (ViewBag.PBTT != null)
+                        {
+                            <div class="col-md-4 pt-3"><p>Phiên bản thể thao:</p></div>
+                            <div class="col-md-8 p-1">
+                                @foreach (HinhAnh item in ViewBag.PBTT)
+                                {
+                                    <button class="btn btn-outline-primary"><img src="~/HinhAnh/TongHopAnh/@item.TenHinh" height="40" width="50" /></button>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row">
+                    @{
+                        if (ViewBag.PBTC != null)
+                        {
+                            <div class="col-md-4 pt-3"><p>Phiên bản tiêu chuẩn:</p></div>
+                            <div class="col-md-8 p-1">
+                                @foreach (HinhAnh item in ViewBag.PBTC)
+                                {
+                                    <button class="btn btn-outline-primary"><img src="~/HinhAnh/TongHopAnh/@item.TenHinh" height="40" width="50" /></button>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="div_ChonMua">
+                <h2>@Model.TenXe</h2>
+                <h4>Giá: <lable class="text-danger">@ChuanHoaGia(Model.Gia.ToString()) VNĐ</lable></h4>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="MuaNgay">
+                            <a class="text_link__" href="/Home/ThemVaoGioHang/@Model.MaXe">Mua Ngay</a>
+                        </div>
+                    </div>
+                    <div class="col-md-5 m-auto">
+                        <div class="TraGop">
+                            <a class="text_link__" href="#">Trả góp 0% </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="dong"></div>
+                <div class="KhuyenMai">Nhận thêm ưu đãi!!!<i class="fa-light fa-box-heart"></i></div>
+                <div class="div_khuyenMai">
+                    <p><i class="fa fa-hand-o-right" aria-hidden="true"></i>Ưu đãi trả góp 0% Khi Mua Xe tại HEAD Phát Tiến .</p>
+                    <p> <i class="fa fa-hand-o-right" aria-hidden="true"></i>Bộ quà tặng trị giá 300.000đ đến 1.000.000đ .</p>
+                    <p> <i class="fa fa-hand-o-right" aria-hidden="true"></i> Xe chính hãng Honda Việt Nam sản xuất .</p>
+                    <p> <i class="fa fa-hand-o-right" aria-hidden="true"></i>Bảo hành lên đến 3 năm hoặc 30.000 Km .</p>
+                    <p> <i class="fa fa-hand-o-right" aria-hidden="true"></i>Thu xe cũ – đổi xe mới nhận ngay 1.000.000đ .</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <table class="table table-light border border-dark font-weight-normal">
+                <tr>
+                    <td class="">Mức tiêu thụ nhiên liệu:</td>
+                    <td>@ct.MucTieuThuNhienLieu</td>
+                </tr>
+                <tr>
+                    <td>Hộp số:</td>
+                    <td>@ct.HopSo</td>
+                </tr>
+                <tr>
+                    <td>Loại truyền động:</td>
+                    <td>@ct.LoaiTruyenDong</td>
+                </tr>
+                <tr>
+                    <td>Môment cực đại:</td>
+                    <td>@ct.MoMentCucDai</td>
+                </tr>
+                <tr>
+                    <td>Dung tích Xilanh:</td>
+                    <td>@ct.DungTichXiLanh</td>
+                </tr>
+                <tr>
+                    <td>Khối lượng:</td>
+                    <td>@ct.KhoiLuong</td>
+                </tr>
+                <tr>
+                    <td>Chiều dài:</td>
+                    <td>@ct.ChieuDai</td>
+                </tr>
+                <tr>
+                    <td>Chiều rộng:</td>
+                    <td>@ct.CheuRong</td>
+                </tr>
+                <tr>
+                    <td>Chiều cao:</td>
+                    <td>@ct.ChieuCao</td>
+                </tr>
+                <tr>
+                    <td>Khoảng cách hai trục bánh:</td>
+                    <td>@ct.KhoangCachHaiTrucBanh</td>
+                </tr>
+                <tr>
+                    <td>Độ cao yên</td>
+                    <td>@ct.DoCaoYen</td>
+                </tr>
+                <tr>
+                    <td>Khoảng sáng gầm:</td>
+                    <td>@ct.KhoangSangGam</td>
+                </tr>
+                <tr>
+                    <td>Dung tích bình xăng:</td>
+                    <td>@ct.DungTichBinhXang</td>
+                </tr>
+                <tr>
+                    <td>Kích thước lốp trước:</td>
+                    <td>@ct.KichThuocLopTruoc</td>
+                </tr>
+                <tr>
+                    <td>Kích thước lốp sau:</td>
+                    <td>@ct.KichThuocLopSau</td>
+                </tr>
+                <tr>
+                    <td>Công suất tối đa;</td>
+                    <td>@ct.CongSuatToiDa</td>
+                </tr>
+                <tr>
+                    <td>Phuộc trước:</td>
+                    <td>@ct.PhuocTruoc</td>
+                </tr>
+                <tr>
+                    <td>Phuộc sau:</td>
+                    <td>@ct.PhuocSau</td>
+                </tr>
+                <tr>
+                    <td>Dung tích nhớt máy:</td>
+                    <td>@ct.DungTichNhotMay</td>
+                </tr>
+                <tr>
+                    <td>Loại động cơ:</td>
+                    <td>@ct.LoaiDongCo</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4 class="text-primary border-bottom border-danger">Sản phẩm nổi bậc</h4>
+            <table class="table table-light table-striped">
+                @{
+                    foreach (Xe_ item in ViewBag.List_XeNoiBac)
+                    {
+                        <tr class="border border-secondary">
+                            <td>
+                                <a href="/Home/ChiTietXe/@item.MaXe">
+                                    <img src="~/HinhAnh/TongHopAnh/@item.AnhBia" width="90" height="70" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/Home/ChiTietXe/@item.MaXe" class="text_link">
+                                    <div>
+                                        <p class="text-primary">@item.TenXe</p>
+                                        <p class="text-danger">@ChuanHoaGia(item.Gia.ToString()) VNĐ</p>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+            <div class="dong"></div>
+            <h4 class="text-primary border-bottom border-danger">Tin tức</h4>
+            <table class="table table-light table-striped">
+                <tr>
+                    <td>
+                        <img src="~/HinhAnh/TongHopAnh/tintuc1.png" width="90" height="70" />
+                    </td>
+                    <td>
+                        <a class="text_link" href="">
+                            <div>
+                                <h5>Giới thiệu các mẫu xe Sports Tourer 2023 từ hãng xe Yamaha</h5>
+                                <p>Đối với các mẫu xe Sports Tourer 2023, nhà sản xuất đã công bố ba bản cập nhật mới bao gồm Tracer9 GT+,
+                                Tracer7 và Niken GT.</p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="~/HinhAnh/TongHopAnh/tintuc2.png" width="90" height="70" />
+                    </td>
+                    <td>
+                        <a class="text_link" href="">
+                            <div>
+                                <h5>Honda CBR1000RR-R 2024 ra mắt với công suất được cải tiến vượt bậc</h5>
+                                <p>
+                                    Honda CBR1000RR-R ra mắt lần đầu vào năm 2020 với công suất tối đa là 218 PS và có khả năng sẽ trải 
+                                    qua một sự thay đổi hoàn toàn về kiểu dáng vào năm 2024.
+                                </p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="~/HinhAnh/TongHopAnh/tintuc3.png" width="90" height="70" />
+                    </td>
+                    <td>
+                        <a class="text_link" href="">
+                            <div>
+                                <h5>Yamaha ra mắt XSR700 Legacy tại EICMA 2022</h5>
+                                <p>
+                                    Yamaha XSR700 Legacy đã được ra mắt tại triển lãm thương mại năm nay và nó đã sẵn sàng để được tung
+                                    ra khỏi nhà máy
+                                </p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="~/HinhAnh/TongHopAnh/tintuc4.png" width="90" height="70" />
+                    </td>
+                    <td>
+                        <a class="text_link" href="">
+                            <div>
+                                <h5>Yamaha công bố các dòng xe Sports Tourer 2023 tích hợp công nghệ mới</h5>
+                                <p>
+                                    Đối với các mẫu xe Sports Tourer 2023, nhà sản xuất đã công bố ba bản cập nhật mới bao gồm Tracer9 GT+,
+                                    Tracer7 và Niken GT.
+                                </p>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="" class="text_link border-bottom border-primary">Xem thêm</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="__line mt-2 mb-2"></div>
+    <div class="row">
+        <h5 class="text-primary ml-4">Sản phẩm tương tự <i class="fa fa-angle-double-right" aria-hidden="true"></i></h5>
+    </div>
+    <div class="row"> 
+        @{
+            if (ViewBag.NULL_ == null)
+            {
+                int dem = 0;
+                foreach (Xe_ item in ViewBag.ListXeTuongtu)
+                {
+                    dem++;
+                    if (dem <= 4)
+                    {
+                <div class="col-md-3">
+                    <div class="card card-group text-center">
+                        <a href="/Home/ChiTietXe/@item.MaXe"> <img src="~/HinhAnh/AnhBia/@item.AnhBia" class=" card-img"  width="240" height="220"/></a>
+                        <div class="card-body">
+                            <div style="height:60px">
+                                <a href="/Home/ChiTietXe/@item.MaXe" class="text_link"><h4 class="text-primary">@item.TenXe</h4></a>
+                            </div>
+                            
+                            <a href="/Home/ChiTietXe/@item.MaXe" class="text_link"><h5 class="text-danger">@ChuanHoaGia(item.Gia.ToString()) VNĐ</h5></a>
+                            <a href="" class="text_link__">
+                                <div class="MuaNgay">Mua ngay</div>
+                            </a>
+                            <a href="" class="text-left ml-1"><h6>Xem chi tiết</h6></a>
+                        </div>
+                    </div>
+                </div>
+                    }
+                }
+            }
+            else
+            {
+                <p class="text-danger ml-4">@ViewBag.NULL</p>
+            }
+        }
+    </div>
+    <div class="__line"></div>
+    <div class="row">
+        <div class="col-md-10 ml-4">
+            <form class="m-0">
+                <div class="form-group m-0" style="width:400px">
+                    <h5 class="col-form-label font-weight-bold">Nhập họ tên:</h5>
+                    <input class="form-control" type="text" name="HoTen"/>
+                </div>
+                <div class="form-group m-0">
+                    <h5 class="col-form-label font-weight-bold">Thêm nhận xét:</h5>
+                    <input class="form-control" type="text" name="NhanXet"/>
+                </div>
+                <button class="btn btn-success float-right m-4" type="submit">Gửi</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/bootstrap/js/bootstrap.js"></script>
+<script src="~/bootstrap/js/jquery-3.3.1.min.js"></script>
+
+

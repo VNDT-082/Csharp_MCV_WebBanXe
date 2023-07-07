@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+@using System.Collections;
+@using System.Threading;
+@helper ChuanHoaGia(string Gia)
+{
+    string gia = "";
+    string gia1 = "";
+    for (int i = 0; i <= Gia.Length - 1; i++)
+    {
+        if (Gia[i] == '.')
+        {
+            break;
+        }
+        gia += Gia[i];
+    }
+    Stack giaChuanHoa = new Stack();
+    int dem = 0;
+    for (int i = gia.Length - 1; i >= 0; i--)
+    {
+        if (dem < 3)
+        {
+            giaChuanHoa.Push(gia[i]);
+            dem++;
+        }
+        else
+        {
+            giaChuanHoa.Push(".");
+            giaChuanHoa.Push(gia[i]);
+            dem = 1;
+        }
+    }
+    while (giaChuanHoa.Count > 0)
+    {
+        gia1 += giaChuanHoa.Pop();
+    }
+    @gia1
+}
+@using LapTrinhWeb_QuanLyBanXe.Models;
+@model List<Xe>
+
+
+
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_Designer.css" rel="stylesheet" />
+<link href="~/bootstrap/css/Style_ChiTietSanPham.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="slides">
+            <div class="slides_wap">
+                <div class="slide">
+                    <img src="~/HinhAnh/TongHopAnh/Vision_bg.png" height="420" width="1200" />
+                </div>
+                <div class="slide">
+                    <img src="~/HinhAnh/TongHopAnh/ShMode_125cc_2023_bg.png" height="420" width="1200" />
+                </div>
+                <div class="slide">
+                    <img src="~/HinhAnh/TongHopAnh/AirBlade125_160_bg.png" height="420" width="1200" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card card-group text-center" style="width:260px">
+                        <a href="/Home/ChiTietXe/@item.MaXe"> <img src="~/HinhAnh/AnhBia/@item.AnhBia" class=" card-img" width="240" height="220" /></a>
+                        <div class="card-body">
+                            <div  style="height:60px">
+                                <a href="/Home/ChiTietXe/@item.MaXe" class="text_link"><h4 class="text-primary">@item.TenXe</h4></a>
+                            </div>
+                            <a href="/Home/ChiTietXe/@item.MaXe" class="text_link"><h5 class="text-danger">@ChuanHoaGia(item.Gia.ToString()) VNĐ</h5></a>
+                            <a href="/Home/ThemVaoGioHang/@item.MaXe" class="text_link">
+                                <div class="TraGop">Mua ngay</div>
+                            </a>
+                            <a href="" class="text-left ml-1"><h6>Xem chi tiết</h6></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+</div>
+
